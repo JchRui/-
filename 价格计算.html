@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>价格计算</title>
+    <style>
+        #count{
+            display: inline-block;
+            border: 1px solid #0094ff;
+            padding:  2px 8px;
+            box-shadow: 2px 2px 2px 0 #ccc;
+            border-radius: 4px;
+            cursor:pointer;
+        }
+        .aaa{
+            box-shadow: none !important;
+        }
+        #price1{
+            color: green;
+        }
+        #price2{
+            color: red;
+        }
+        .test {
+            height: 300px;
+            width: 100%;
+            background: url();
+            background-size: cover;
+            
+        }
+    </style>
+</head>
+<body>
+    <!-- <div>适用类型: <span>沪深300，上证指数，中证500，中证50</span></div>
+    <span>最高价:&nbsp;&nbsp;</span><input type="text" id="input1">&nbsp;&nbsp;&nbsp;&nbsp;
+    <span>最低价:&nbsp;&nbsp;</span><input type="text" id="input2">&nbsp;&nbsp;&nbsp;&nbsp; -->
+    <span id="count">计算</span>
+    <!-- <div>合适购买区间</div>
+    <div>
+        <span id="price1"></span> ~ <span id="price2"></span>
+    </div>
+
+    <div class="test">
+
+    </div> -->
+    <div id="sum">计算</div>
+</body>
+<script>
+    let input1 = document.getElementById('input1')
+    let input2 = document.getElementById('input2')
+    let count = document.getElementById('count')
+    let price1 = document.getElementById('price1')
+    let price2 = document.getElementById('price2')
+    count.onclick = function(){
+        count.classList.toggle('aaa')
+        price1.innerHTML= Number(input1.value-input2.value)*0.2+Number(input2.value)
+        price2.innerHTML= Number(input1.value-input2.value)*0.3+Number(input2.value)
+        setTimeout(() => {
+            count.classList.toggle('aaa')
+        },150)
+    }
+
+    let sumbtn = document.getElementById('sum')
+
+    function test(nums,target) {
+        const map = {}
+        const len = nums.length
+        for(let i=0;i<len; i++){
+            const targetNum = target - nums[i];
+            if(targetNum in map) return [map[targetNum], i]
+            map[nums[i]] = i
+        }
+    }
+    sumbtn.onclick = function () {
+        console.log(test([0,1,2,5,8,7,9,11,22],11)); 
+    }
+</script>
+
+</html>
